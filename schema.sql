@@ -1,0 +1,23 @@
+CREATE DATABASE IF NOT EXISTS mercado;
+
+USE mercado;
+
+CREATE TABLE IF NOT EXISTS produtos (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(255) NOT NULL,
+  preco DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS compras (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  data_compra DATE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS itens_compra (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  compraId INT,
+  produtoId INT,
+  quantidade INT NOT NULL,
+  FOREIGN KEY (compraId) REFERENCES compras(id),
+  FOREIGN KEY (produtoId) REFERENCES produtos(id)
+);
